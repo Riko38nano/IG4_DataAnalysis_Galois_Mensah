@@ -1,0 +1,8 @@
+Git contenant le code R du rapport de data analysis de Galois Nicolas et Rogerio Mensah
+
+Les deux fichiers contiennent le code pour traiter les variables.
+
+  - Dans le fichiers code graphique, vous trouverez les fonctions pour tester l'indépendance des variables et ainsi créer le tableau contenant les variables qui ont un lien
+  avec la variable qui détermine si la personne ira au travail en 2-roues. Début ligne 584.
+  
+  - Dans le fichier code nettoyage, vous trouverez le code pour les AFCs Début ligne 587.
