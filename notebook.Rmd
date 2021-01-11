@@ -1,0 +1,123 @@
+---
+title: "notebook"
+output: html_document
+---
+
+
+```{r cars}
+## Segment et est ce que la personne va déjà en moto au travail
+
+vecUsage = c("A 2-roues motorisé - Avant le confinement", "A 2-roues motorisé - Dans les mois qui vont suivre", 
+             "A 2-roues motorisé - Pendant le confinement")
+
+ACMSegToday = MCA(donneesTravailleur[vecUsage])
+fviz_mca_var(ACMSegToday, col.var = "contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             invisible = "ind",
+             repel = TRUE)
+```
+
+```{r}
+## Impact financier
+
+vecImpactFin = c("La crise sanitaire a-t-elle eu un impact sur les revenus de votre foyer ?")
+
+segment_fin = cbind(data[vecImpactFin], 
+                    donneesTravailleur$`A 2-roues motorisé - Dans les mois qui vont suivre`)
+
+ACMSegImpactFin = MCA(segment_fin, graph = FALSE)
+
+fviz_mca_var(ACMSegImpactFin, col.var = "contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             invisible = "ind",
+             repel = TRUE)
+```
+
+
+```{r}
+## Activité en liens avec la moto
+vecActivite = c("Avez-vous découvert une activité en lien avec le 2-roues motorisé au cours du confinement ?")
+
+segment_activite = cbind(data[vecActivite], 
+                                 donneesTravailleur['A 2-roues motorisé - Dans les mois qui vont suivre'])
+
+ACMSegActivite = MCA(segment_activite, graph = FALSE)
+fviz_mca_var(ACMSegActivite, col.var = "contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             invisible = "ind",
+             repel = TRUE)
+```
+```{r}
+## Quels activité ?
+
+data = rename.variable(data, 
+                       "bricolé votre 2-roues motorisé - Ce comportement va perdurer, pour vous, dans les mois à venir pour les activités suivantes",
+                       "bricolé votre 2-roues motorisé")
+
+data = rename.variable(data, 
+                       "regardé des road-trips / voyages à 2-roues - Ce comportement va perdurer, pour vous, dans les mois à venir pour les activités suivantes",
+                       "regardé des road-trips / voyages à 2-roues")
+
+data = rename.variable(data, 
+                       "regardé des tutoriels 2-roues motorisé - Ce comportement va perdurer, pour vous, dans les mois à venir pour les activités suivantes",
+                       "regardé des tutoriels 2-roues motorisé")
+
+vecActivites = c("bricolé votre 2-roues motorisé",
+                "regardé des road-trips / voyages à 2-roues", 
+                 "regardé des tutoriels 2-roues motorisé")
+
+segment_activites = cbind(data[vecActivites], 
+                          donneesTravailleur['A 2-roues motorisé - Dans les mois qui vont suivre'])
+
+ACMSegActivites = MCA(segment_activites, graph = FALSE)
+fviz_mca_var(ACMSegActivites, col.var = "contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             invisible = "ind",
+             repel = TRUE)
+
+```
+
+```{r}
+## Frustration/ Besoin de rouler
+
+data = rename.variable(data, 
+                        "Avez-vous ressenti le besoin de faire du 2-roues motorisé pendant le confinement ?",
+                        "Besoin")
+
+data = rename.variable(data, 
+                        "Avez-vous ressenti un sentiment de frustration de ne pas pouvoir pratiquer votre passion pendant le confinement ?",
+                       "Frustration")
+vecBesoin = c("Besoin", "Frustration")
+
+segment_besoin_frustration = cbind(data[vecBesoin], 
+                     donneesTravailleur['A 2-roues motorisé - Dans les mois qui vont suivre'])
+
+
+ACMSegBesoin = MCA(segment_besoin_frustration, graph = FALSE)
+fviz_mca_var(ACMSegBesoin, col.var = "contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             invisible = "ind",
+             repel = TRUE)
+```
+
+```{r}
+
+## incitatif
+vecIncitatif = c("La facilité de stationnement", "La liberté", "La praticité", 
+                 "Le gain de temps", "Le plaisir de rouler")
+
+segment_incitatif = cbind(data[vecIncitatif], 
+                          donneesTravailleur$`A 2-roues motorisé - Dans les mois qui vont suivre`)
+
+segment_incitatif = rename.variable(segment_incitatif, 
+                    "donneesTravailleur$`A 2-roues motorisé - Dans les mois qui vont suivre`", 
+                    "A 2-roues motorisé - Dans les mois qui vont suivre")
+
+ACMIncitatif = MCA(segment_incitatif, graph = FALSE)
+fviz_mca_var(ACMIncitatif, col.var = "contrib",
+             gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"), 
+             invisible = "ind",
+             repel = TRUE)
+
+```
+
