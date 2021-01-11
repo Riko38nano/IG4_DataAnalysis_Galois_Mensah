@@ -1,10 +1,19 @@
 ---
 title: "notebook"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
+```{r setup}
+library("FactoMineR")
+library("factoextra")
+library("questionr")
+```
 
-```{r cars}
+
+
+```{r}
 ## Segment et est ce que la personne va déjà en moto au travail
 
 vecUsage = c("A 2-roues motorisé - Avant le confinement", "A 2-roues motorisé - Dans les mois qui vont suivre", 
