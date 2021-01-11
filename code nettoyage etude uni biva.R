@@ -596,7 +596,7 @@ colnames(data)
 vecSegment = c("Segment du 2rm 1", "Usage du 2rm 1")
 ACMSegChgmt = CA(table(donneesTravailleur[vecSegment]))
 
-## Segment et est ce que la personne va déjà en moto au travail
+## est ce que la personne va déjà en moto au travail
 
 vecUsage = c("A 2-roues motorisé - Avant le confinement", "A 2-roues motorisé - Dans les mois qui vont suivre", 
              "A 2-roues motorisé - Pendant le confinement")
